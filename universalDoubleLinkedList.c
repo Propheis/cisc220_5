@@ -1,11 +1,34 @@
 #include<stdio.h>
 
+#define MODE_int    0;
+#define MODE_intP   1;
+#define MODE_float  2;
+#define MODE_floatP 3;
+#define MODE_char   4;
+#define MODE_charP  5;
+
+union Data {
+  int    intData;
+  int*   intPtrData;
+
+  float  floatData;
+  float* floatPtrData;
+  
+  char   charData;
+  char*  charPtrData;
+};
+
 struct Node {
-  int data;
+  union Data data;
+  
+  // One of the MODE_* types. 
+  // Used to identify which type is being stored in data
+  char currentNodeType;
+
   struct Node* next;
   struct Node* before;
-
 };
+
 typedef struct Node Node;
 Node* head = NULL;
 Node* tail = NULL;
