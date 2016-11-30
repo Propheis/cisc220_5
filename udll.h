@@ -19,12 +19,12 @@ union Data {
 struct Node {
   union Data data;
   struct Node* next;
-  struct Node* before;
+  struct Node* prev;
 };
 
 typedef struct Node Node;
 
-void insert(int index, union Data data);
-void remove(int index);
-union Data get(int index);
-int length();
+static void insert(int index, union Data data);
+static void n_remove(int index);
+static union Data get(int index);
+static int length();

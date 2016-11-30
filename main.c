@@ -4,31 +4,84 @@
 // Quentin Petraroia - 10145835
 
 #include "udll.c"
+#include <stdlib.h>
 
 int main() {
+  //
+  // Setup
+  //
 
-  Node n6 = {25, NULL, NULL}; head = &n6;
-  tail = &n6;
-  Node n5 = {1, &n6, NULL}; head = &n5;
-  n6.before = &n5;
-  Node n4 = {4, &n5, NULL}; head = &n4;
-  n5.before = &n4;
-	Node n3 = {2, &n4, NULL};  head = &n3;
-  n4.before = &n3;
-	Node n2 = {10, &n3, NULL};  head = &n2;
-  n3.before = &n2;
-	Node n1 = {3, &n2, NULL};  head = &n1;
-  n2.before = &n1;
+  printf("Setting up testing...\n");
 
-  remove(4);
+  int intData     = 1;
+  char charData   = 'a';
+  float floatData = 0.1;
 
-	for(Node *i = head; i != NULL; i = i->next){
-		printf("element = %d\n",i->data);
-	}
+  union Data a,b,c,d,e,f;
 
-  for(Node *i = tail; i != NULL; i = i->before) {
-    printf("element = %d\n", i->data);
+  a.intData      =  intData;
+  b.intPtrData   = &intData;
+  c.charData     =  charData;
+  d.charPtrData  = &charData;
+  e.floatData    =  floatData;
+  f.floatPtrData = &floatData;
+
+  //
+  // Test insert()
+  //
+
+  printf("Testing insert() function\n");
+
+  // Inserting to last half of list, so should traverse from tail
+  insert(0, a);
+  insert(1, b);
+  insert(2, c);
+  insert(3, d);
+  
+  // Inserting to first half of list, so should traverse from head
+  insert(0, e);
+  insert(2, f);
+
+  //
+  // Test length()
+  //
+
+  printf("Testing length() function\n");
+
+  if (length() != 6) {
+    printf("Something went wrong inserting nodes\n");
+    exit(1);
   }
+
+  //
+  // Test get()
+  //
+
+  printf("Testing get() function\n");
+
+  union Data result = get(0);
+  if (result.floatData != floatData)
+    printf("get() returned the wrong result or insert() is broken\n");
+
+  result = get(2);
+  if (result.floatPtrData != &floatData)
+    printf("get() returned the wrong result or insert() is broken\n");
+
+  //
+  // Test remove()
+  //
+
+  printf("Testing remove() function\n");
+
+  n_remove(0);
+
+  if (length() != 5)
+    printf("remove() didn't remove anything or length() is broken.\n");
+
+  if (get(0).intData != intData)
+    printf("remove() didn't remove the right element or get() is broken\n");
+
+  printf("Testing complete. Exiting now\n");
 
   return 0;
 }

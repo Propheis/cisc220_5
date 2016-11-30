@@ -4,7 +4,7 @@
 # Quentin Petraroia - 10145835
 
 universalDoubleLinkedList: udll.o main.c
-		gcc -Wall -o universalDoubleLinkedList udll.c main.c
+		gcc -o universalDoubleLinkedList udll.c main.c
 
 udll.o: udll.c udll.h
-		gcc -Wall -c udll.c
+		gcc -c udll.c
