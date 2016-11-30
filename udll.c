@@ -3,7 +3,10 @@
 // Kevin Zuern       - 10134425
 // Quentin Petraroia - 10145835
 
-#include <udll.h>
+#include "udll.h"
+
+Node* head = NULL;
+Node* tail = NULL;
 
 void insert(int index, union Data data) {
 
@@ -18,11 +21,5 @@ int length() {
 }
 
 void remove(int index) {
-  int indxPtr = 0;
-  for (Node *i = head; i!=NULL; i=i->next) {
-    if (indxPtr == (index -1)) {
-      indxPtr = indxPtr->next->next;
-    }
-    break;
-  }
+
 }

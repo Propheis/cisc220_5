@@ -3,9 +3,7 @@
 // Kevin Zuern       - 10134425
 // Quentin Petraroia - 10145835
 
-#include <udll.c>
-Node* head = NULL;
-Node* tail = NULL;
+#include "udll.c"
 
 int main() {
 
@@ -22,7 +20,7 @@ int main() {
 	Node n1 = {3, &n2, NULL};  head = &n1;
   n2.before = &n1;
 
-  Remove(4);
+  remove(4);
 
 	for(Node *i = head; i != NULL; i = i->next){
 		printf("element = %d\n",i->data);
