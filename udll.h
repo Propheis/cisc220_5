@@ -26,7 +26,8 @@ struct Node {
 
 typedef struct Node Node;
 
-static void insert(int index, union Data data, int type);
-static void n_remove(int index);
-static union Data get(int index);
-static int length();
+Node *getHead();
+void insert(int index, union Data data, int type);
+void n_remove(int index);
+union Data get(int index);
+int length();
