@@ -1,4 +1,11 @@
-#include <udll.h>;
+// Deven Bernard     - 10099810
+// Marissa Huang     - 10179169
+// Kevin Zuern       - 10134425
+// Quentin Petraroia - 10145835
+
+#include <udll.c>
+Node* head = NULL;
+Node* tail = NULL;
 
 int main() {
 
@@ -17,11 +24,11 @@ int main() {
 
   Remove(4);
 
-	for(Node *i = head; i!=NULL; i=i->next){
+	for(Node *i = head; i != NULL; i = i->next){
 		printf("element = %d\n",i->data);
 	}
 
-  for(Node *i = tail; i!= NULL; i=i->before) {
+  for(Node *i = tail; i != NULL; i = i->before) {
     printf("element = %d\n", i->data);
   }
 

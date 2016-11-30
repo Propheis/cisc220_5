@@ -1,3 +1,8 @@
+// Deven Bernard     - 10099810
+// Marissa Huang     - 10179169
+// Kevin Zuern       - 10134425
+// Quentin Petraroia - 10145835
+
 #include <stdio.h>
 
 #define MODE_int    0;
@@ -28,6 +33,8 @@ struct Node {
   struct Node* next;
   struct Node* before;
 };
+
+typedef struct Node Node;
 
 void insert(int index, union Data data);
 void remove(int index);
