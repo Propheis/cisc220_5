@@ -93,9 +93,25 @@ Node *getHead() { return &head; }
   // me
 
   // Traverse list from shortest end (head or tail). use length() to figure that out
-  printf("get() not implemented.\n");
+  Node *i;
+  int currentIndx;
+  if (index > length()/ 2) {
+    currentIndx = length();
+    for (i = tail; i->previous != NULL; i=i->previous) {
+      currentIndx--;
+      if (currentIndx == index) {
+        return i->data;
+      }
+  }
+} else {
+  for (i = &head; i->next != NULL; i=i->next) {
+    currentIndx++;
+    if (currentIndx == index) {
+      return i->data;
+    }
+  }
+}
   printf("Exiting now...\n");
-  exit(1);
 }
 
 // temporarily renamed to n_remove b/c "remove" conflicts with a function in stdio.h
