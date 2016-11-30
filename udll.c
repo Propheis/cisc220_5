@@ -10,57 +10,86 @@
 static Node head = { 0, NULL, NULL };
 
 // Points to the end of the list
-static Node tail = { 0, NULL, NULL};
+// static Node tail = { 0, NULL, NULL};
+static Node *tail;
 
-static void insert(int index, union Data data, int type) {
-  // Deven
+Node *getHead() { return &head; }
 
+ void insert(int index, union Data data, int type) {
   // Traverse list from shortest end (head or tail). use length() to figure that out
   // Don't forget to increment list length when doing insertion (length stored in head.data.intData)
-  printf("insert() not implemented.\n");
+  //printf("insert() not implemented.\n");
   int indxPtr = 0;
 
   if (head.next == NULL) {
-    Node new = {data, NULL, NULL};
-    head.next = &new;
-    tail.previous = &new;
+    Node *new = malloc(sizeof(Node));
+    //{data, NULL, NULL, type};
+    head.next = new;
+    tail = new;
+    new->data = data;
+    new->type = type;
+    new->previous = &head;
   } else {
     Node *i;
     if (index > head.data.intData / 2) {
-      indxPtr = head.data.intData;
-      for (i = &tail; i->previous != NULL; i=i->previous) {
+      indxPtr = head.data.intData - 1;
+      for (i = tail; i->previous != NULL; i=i->previous) {
         if (indxPtr == (index - 1)) {
           break;
         }
         indxPtr --;
       }
-      Node new = {data, i->next, i, type};
+      Node *new = malloc(sizeof(Node));
+      //{data, i->next, i, type};
+      new->data = data;
+      new->type = type;
       if (i->next == NULL) {
-        tail.previous = &new;
+        tail->next = new;
+        new->previous = i;
+        new->next = NULL;
+        tail = new;
+      } else {
+        Node *temp;
+        temp = i->previous;
+        new->next = i;
+        new->previous = temp;
+        i->previous = new;
+        temp->next = new;
       }
-      i->next = &new;
-      new.next->previous = &new;
+      //i->next = new;
+      //new.next->previous = new;
 
     } else {
-      for(i = &head; i->next != NULL; i=i->next) {
+      for(i = head.next; i->next != NULL; i=i->next) {
         if (indxPtr == (index -1)) {
           break;
         }
         indxPtr++;
       }
+      Node *new = malloc(sizeof(Node));
+      //{data, i->next, i, type};
+      new->data = data;
+      new->type = type;
+      if (i->next == NULL) {
+        i->next = new;
+        new->previous = i;
+        tail = new;
+      } else {
+        Node *temp;
+        temp = i->next;
+        i->next = new;
+        new->next = temp;
+        temp->previous = new;
+        new->previous = i;
       }
-    Node new = {data, i->next, i, type};
-    if (i->next == NULL) {
-      tail.previous = &new;
     }
-    i->next = &new;
   }
   head.data.intData++;
-  printf("Exiting now...\n");
+  //printf("Exiting now...\n");
   return;
 }
 
-static union Data get(int index) {
+ union Data get(int index) {
   // me
 
   // Traverse list from shortest end (head or tail). use length() to figure that out
@@ -70,7 +99,7 @@ static union Data get(int index) {
 }
 
 // temporarily renamed to n_remove b/c "remove" conflicts with a function in stdio.h
-static void n_remove(int index) {
+ void n_remove(int index) {
   // Marissa
 
   // Traverse list from shortest end (head or tail). use list length to figure that out
@@ -80,7 +109,7 @@ static void n_remove(int index) {
   exit(1);
 }
 
-static int length() {
+ int length() {
   // The length of the list is always stored in the data of the head of the list
   return head.data.intData;
 }
