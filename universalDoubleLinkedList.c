@@ -3,7 +3,7 @@
 // Kevin Zuern       - 10134425
 // Quentin Petraroia - 10145835
 
-#include "udll.c"
+#include "udll.h"
 #include <stdlib.h>
 
 int main() {
@@ -37,17 +37,16 @@ int main() {
   insert(1, b, 1);
   insert(2, c, 2);
   insert(3, d, 3);
-
   // Inserting to first half of list, so should traverse from head
-  insert(0, e, 4);
-  insert(2, f, 5);
+//  insert(0, e, 4);
+//  insert(2, f, 5);
   Node *i;
-  for(i = &head; i->next != NULL; i=i->next) {
-
+  for(i = getHead()->next; i; i=i->next) {
+/*
     if(i->type == 0) {
     printf("%d", i->data.intData);
   } else if (i->type == 1) {
-    printf("%x", i->data.intPtrData);
+    printf("%p", i->data.intPtrData);
   } else if (i->type == 2) {
     printf("%c", i->data.charData);
   } else if (i->type == 3) {
@@ -55,9 +54,9 @@ int main() {
   } else if (i->type == 4) {
     printf("%f", i->data.floatData);
   } else {
-    printf("%x", i->data.floatPtrData);
+    printf("%p", i->data.floatPtrData);
   }
-}
+*/}
 
   //
   // Test length()
