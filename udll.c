@@ -88,13 +88,6 @@ static Node* getNodeAt(int index) {
     exit(1);
   }
 
-  if (index == 0)
-    return &head;
-  else if (index == length()) {
-    printf("tail\n");
-    return tail;
-  }
-
   Node* ptr;
 
   char traverseFromHead = (index <= length() / 2);
@@ -105,8 +98,7 @@ static Node* getNodeAt(int index) {
     ptr = &head;
   }
   else {
-    printf("Traversing from tail\n");
-    currentIndex = length() -1;
+    currentIndex = length();
     ptr = tail;
   }
 
@@ -117,7 +109,6 @@ static Node* getNodeAt(int index) {
       ptr = ptr->next;
     }
     else {
-      printf("Cur: %d, Ind: %d\n", currentIndex, index);
       currentIndex--;
       ptr = ptr->prev;
     }
