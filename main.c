@@ -87,11 +87,19 @@
 // }
 
 int main() {
-  union Data new;
-  new.intData = -5;
+  union Data a,b,c;
+  a.charData = 'a';
+  b.charData = 'b';
+  c.charData = 'c';
 
   printf("List in current state:\n");
   printList();
-  insert(0, new, INTDATA);
+
+  insert(0, a, CHARDATA);
   printList();
+  
+  insert(2, b, CHARDATA);
+  printList();
+
+
 }

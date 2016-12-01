@@ -16,15 +16,19 @@ static Node* tail = &head;
 static void insert(int index, union Data data, char dataType) {
   head.data.intData++;
 
-  if ( index == 0 ) {
-    printf("Inserting to head of list\n");
+  if ( index == 0 ) { // insert to head of list
+    printf("Inserting %c to head of list\n", data.charData);
     Node *new = node(data, dataType, &head, head.next);
     head.next = new;
+    tail = new;
 
     return;
   }
-  else if ( index == length() ) {
-    
+  else if ( index >= length() ) { // insert to tail of list
+    printf("Inserting %c to tail of list\n", data.charData);
+    Node *new = node(data, dataType, tail, NULL);
+    tail->next = new;
+
     return;
   }
 }
@@ -61,7 +65,7 @@ static void printList() {
   Node* cur = head.next;
   while (cur != NULL)
   {
-    printf(" -> (%d)", cur->data.intData);
+    printf(" -> (%c)", cur->data.charData);
     cur = cur->next;
   }
 
