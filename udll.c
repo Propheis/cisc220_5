@@ -7,11 +7,11 @@
 #include <stdlib.h>
 
 // Stores the start of the list. Data in head is the length of the list
-static Node head = { 0, NULL, NULL };
+static Node head;
 // Points to the end of the list
-static Node* tail = &head;
+static Node* tail;
 
-static void insert(int index, union Data data) {
+static void insert(int index, union Data data, char dataType) {
   Node* new = malloc(sizeof(Node));
   new->data = data;
 
