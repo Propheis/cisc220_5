@@ -6,7 +6,9 @@
 #include "udll.h"
 #include <stdlib.h>
 
+// Private functions
 static Node* node(union Data data, char dataType, Node* prev, Node* next);
+static Node* getNodeAt(int index);
 
 // Stores the start of the list. Data in head is the length of the list
 static Node head;
@@ -31,6 +33,14 @@ static void insert(int index, union Data data, char dataType) {
 
     return;
   }
+
+  // Insert somewhere in the middle
+  printf("Inserting %c at index %d\n", data.charData, index );
+  Node* insertionPoint = getNodeAt(index);
+  Node *new = node(data, dataType, insertionPoint->prev, insertionPoint->next);
+
+  insertionPoint->next = new;
+  new->next->prev = new;
 }
 
 static union Data get(int index) {
@@ -59,7 +69,7 @@ static int length() {
 }
 
 static void printList() {
-  
+
   printf("(%d)", head.data.intData);
 
   Node* cur = head.next;
@@ -81,4 +91,41 @@ static Node* node(union Data data, char dataType, Node* prev, Node* next) {
   new->prev = prev;
 
   return new;
+}
+
+static Node* getNodeAt(int index) {
+
+  if ( index < 0 || index > length() ) {
+    fprintf(stderr, "Tried to access an index outside the range of the list!\n");
+    exit(1);
+  }
+
+  Node* ptr;
+
+  char traverseFromHead = (index <= length() / 2);
+  int currentIndex;
+
+  if (traverseFromHead) {
+    currentIndex = 0;
+    ptr = &head;
+  }
+  else {
+    currentIndex = length();
+    ptr = tail;
+  }
+
+  while (currentIndex != index) {
+
+    if (traverseFromHead) {
+      currentIndex++;
+      ptr = ptr->next;
+    }
+    else {
+      currentIndex--;
+      ptr = ptr->prev;
+    }
+
+  } // end while
+
+  return ptr;
 }

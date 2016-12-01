@@ -87,18 +87,22 @@
 // }
 
 int main() {
-  union Data a,b,c;
+  union Data a,b,c,d;
   a.charData = 'a';
   b.charData = 'b';
   c.charData = 'c';
+  d.charData = 'd';
 
-  printf("List in current state:\n");
+  printf("The empty list:\n");
   printList();
 
   insert(0, a, CHARDATA);
   printList();
   
-  insert(2, b, CHARDATA);
+  insert(2, c, CHARDATA);
+  printList();
+
+  insert(1, b, CHARDATA);
   printList();
 
 
