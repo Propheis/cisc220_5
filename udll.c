@@ -70,6 +70,7 @@ static void printList() {
   printf("\n");
 }
 
+// Creates a new node and returns the pointer to it
 static Node* node(union Data data, char dataType, Node* prev, Node* next) {
   Node *new = malloc(sizeof(Node));
 
@@ -81,6 +82,7 @@ static Node* node(union Data data, char dataType, Node* prev, Node* next) {
   return new;
 }
 
+// Fetches a node at a given index from the list
 static Node* getNodeAt(int index) {
 
   if ( index < 0 || index > length() ) {
