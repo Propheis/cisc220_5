@@ -53,35 +53,35 @@ int main() {
     exit(1);
   }
 
-  //
-  // Test get()
-  //
+  // //
+  // // Test get()
+  // //
 
-  printf("Testing get() function\n");
+  // printf("Testing get() function\n");
 
-  union Data result = get(0);
-  if (result.floatData != floatData)
-    printf("get() returned the wrong result or insert() is broken\n");
+  // union Data result = get(0);
+  // if (result.floatData != floatData)
+  //   printf("get() returned the wrong result or insert() is broken\n");
 
-  result = get(2);
-  if (result.floatPtrData != &floatData)
-    printf("get() returned the wrong result or insert() is broken\n");
+  // result = get(2);
+  // if (result.floatPtrData != &floatData)
+  //   printf("get() returned the wrong result or insert() is broken\n");
 
-  //
-  // Test remove()
-  //
+  // //
+  // // Test remove()
+  // //
 
-  printf("Testing remove() function\n");
+  // printf("Testing remove() function\n");
 
-  n_remove(0);
+  // n_remove(0);
 
-  if (length() != 5)
-    printf("remove() didn't remove anything or length() is broken.\n");
+  // if (length() != 5)
+  //   printf("remove() didn't remove anything or length() is broken.\n");
 
-  if (get(0).intData != intData)
-    printf("remove() didn't remove the right element or get() is broken\n");
+  // if (get(0).intData != intData)
+  //   printf("remove() didn't remove the right element or get() is broken\n");
 
-  printf("Testing complete. Exiting now\n");
+  // printf("Testing complete. Exiting now\n");
 
   return 0;
 }

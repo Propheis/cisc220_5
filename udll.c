@@ -12,13 +12,41 @@ static Node head = { 0, NULL, NULL };
 static Node* tail = &head;
 
 static void insert(int index, union Data data) {
-  // Deven
+  Node* new = malloc(sizeof(Node));
+  new->data = data;
 
-  // Traverse list from shortest end (head or tail). use length() to figure that out
-  // Don't forget to increment list length when doing insertion (length stored in head.data.intData)
-  printf("insert() not implemented.\n");
-  printf("Exiting now...\n");
-  exit(1);
+  char startFromHead = (index <= length() / 2);
+
+  int currentIndex;
+  Node* insertionPoint = NULL;
+
+  if (startFromHead)
+    insertionPoint = tail;
+  else
+    insertionPoint = &head;
+
+  // Find the point to insert
+  while (currentIndex != index) {
+    if (startFromHead) {
+      insertionPoint = insertionPoint->next;
+      currentIndex++;
+    }
+    else {
+      insertionPoint = insertionPoint->prev;
+      currentIndex--;
+    }
+  } // end while
+
+  // Insert the node
+  Node tmp = *insertionPoint;
+  insertionPoint->prev = new;
+  new->next = insertionPoint;
+
+  if (index > 0)
+  {
+    new->prev = tmp.prev;
+    tmp.next = new;
+  }
 }
 
 static union Data get(int index) {
