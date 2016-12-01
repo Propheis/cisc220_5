@@ -5,12 +5,12 @@
 
 #include <stdio.h>
 
-#define INTDATA      0;
-#define INTPTRDATA   1;
-#define FLOATDATA    2;
-#define FLOATPTRDATA 3;
-#define CHARDATA     4;
-#define CHARPTRDATA  5;
+#define INTDATA      0
+#define INTPTRDATA   1
+#define FLOATDATA    2
+#define FLOATPTRDATA 3
+#define CHARDATA     4
+#define CHARPTRDATA  5
 
 union Data {
   int    intData;
@@ -36,3 +36,4 @@ static void insert(int index, union Data data, char dataType);
 static void n_remove(int index);
 static union Data get(int index);
 static int length();
+static void printList();

@@ -87,27 +87,11 @@
 // }
 
 int main() {
-  union Data a, b, c;
-  a.intData = 1;
-  b.intData = 2;
-  c.intData = 3;
+  union Data new;
+  new.intData = -5;
 
-  Node n1, n2, n3;
-
-  n1.data = a;
-  n1.dataType = INTDATA;
-  n1.next = NULL;
-  n1.next = &n2;
-
-  n2.data = b;
-  n2.dataType = INTDATA;
-  n2.prev = &n1;
-  n2.next = &n3;
-
-  n3.data = c;
-  n3.dataType = INTDATA;
-  n3.prev = &n2;
-  n3.next = NULL;
-
-  printf("%d\n", (n1.next)->next->data.intData);
+  printf("List in current state:\n");
+  printList();
+  insert(0, new, INTDATA);
+  printList();
 }

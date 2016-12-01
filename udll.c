@@ -6,46 +6,26 @@
 #include "udll.h"
 #include <stdlib.h>
 
+static Node* node(union Data data, char dataType, Node* prev, Node* next);
+
 // Stores the start of the list. Data in head is the length of the list
 static Node head;
 // Points to the end of the list
-static Node* tail;
+static Node* tail = &head;
 
 static void insert(int index, union Data data, char dataType) {
-  Node* new = malloc(sizeof(Node));
-  new->data = data;
+  head.data.intData++;
 
-  char startFromHead = (index <= length() / 2);
+  if ( index == 0 ) {
+    printf("Inserting to head of list\n");
+    Node *new = node(data, dataType, &head, head.next);
+    head.next = new;
 
-  int currentIndex;
-  Node* insertionPoint = NULL;
-
-  if (startFromHead)
-    insertionPoint = tail;
-  else
-    insertionPoint = &head;
-
-  // Find the point to insert
-  while (currentIndex != index) {
-    if (startFromHead) {
-      insertionPoint = insertionPoint->next;
-      currentIndex++;
-    }
-    else {
-      insertionPoint = insertionPoint->prev;
-      currentIndex--;
-    }
-  } // end while
-
-  // Insert the node
-  Node tmp = *insertionPoint;
-  insertionPoint->prev = new;
-  new->next = insertionPoint;
-
-  if (index > 0)
-  {
-    new->prev = tmp.prev;
-    tmp.next = new;
+    return;
+  }
+  else if ( index == length() ) {
+    
+    return;
   }
 }
 
@@ -72,4 +52,29 @@ static void n_remove(int index) {
 static int length() {
   // The length of the list is always stored in the data of the head of the list
   return head.data.intData;
+}
+
+static void printList() {
+  
+  printf("(%d)", head.data.intData);
+
+  Node* cur = head.next;
+  while (cur != NULL)
+  {
+    printf(" -> (%d)", cur->data.intData);
+    cur = cur->next;
+  }
+
+  printf("\n");
+}
+
+static Node* node(union Data data, char dataType, Node* prev, Node* next) {
+  Node *new = malloc(sizeof(Node));
+
+  new->data = data;
+  new->dataType = dataType;
+  new->next = next;
+  new->prev = prev;
+
+  return new;
 }
