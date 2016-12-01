@@ -93,10 +93,12 @@ static Node* getNodeAt(int index) {
   int currentIndex;
 
   if (traverseFromHead) {
+    printf("Traversing from head\n");
     currentIndex = 0;
     ptr = &head;
   }
   else {
+    printf("Traversing from tail\n");
     currentIndex = length();
     ptr = tail;
   }
