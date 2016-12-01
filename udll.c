@@ -16,18 +16,19 @@ static Node head;
 static Node* tail = &head;
 
 static void insert(int index, union Data data, char dataType) {
+  // Increment length
   head.data.intData++;
 
   if ( index == 0 ) { // insert to head of list
-    printf("Inserting %c to head of list\n", data.charData);
+    printf("Inserting (%c) to head of list\n", data.charData);
     Node *new = node(data, dataType, &head, head.next);
     head.next = new;
     tail = new;
 
     return;
   }
-  else if ( index >= length() ) { // insert to tail of list
-    printf("Inserting %c to tail of list\n", data.charData);
+  else if ( index == length() - 1 ) { // insert to tail of list
+    printf("Inserting (%c) to tail of list\n", data.charData);
     Node *new = node(data, dataType, tail, NULL);
     tail->next = new;
 
@@ -35,7 +36,7 @@ static void insert(int index, union Data data, char dataType) {
   }
 
   // Insert somewhere in the middle
-  printf("Inserting %c at index %d\n", data.charData, index );
+  printf("Inserting (%c) at index %d\n", data.charData, index );
   Node* insertionPoint = getNodeAt(index);
   Node *new = node(data, dataType, insertionPoint->prev, insertionPoint->next);
 
@@ -44,27 +45,13 @@ static void insert(int index, union Data data, char dataType) {
 }
 
 static union Data get(int index) {
-  // Quentin
-
-  // Traverse list from shortest end (head or tail). use length() to figure that out
-  printf("get() not implemented.\n");
-  printf("Exiting now...\n");
-  exit(1);
+  return getNodeAt(index)->data;
 }
 
 // temporarily renamed to n_remove b/c "remove" conflicts with a function in stdio.h
-static void n_remove(int index) {
-  // Marissa
-
-  // Traverse list from shortest end (head or tail). use list length to figure that out
-  // Don't forget to decrement list length when removing a node (length stored in head.data.intData)
-  printf("remove() not implemented.\n");
-  printf("Exiting now...\n");
-  exit(1);
-}
+static void n_remove(int index) { }
 
 static int length() {
-  // The length of the list is always stored in the data of the head of the list
   return head.data.intData;
 }
 

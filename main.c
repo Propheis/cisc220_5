@@ -99,11 +99,15 @@ int main() {
   insert(0, a, CHARDATA);
   printList();
   
-  insert(2, c, CHARDATA);
+  insert(1, c, CHARDATA);
   printList();
 
   insert(1, b, CHARDATA);
   printList();
 
+  printf("\nFetching data from node 0 (expecting 3)... %d\n", get(0).intData);
+  printf("Fetching data from node 1 (expecting a)... %c\n", get(1).charData);
+  printf("Fetching data from node 2 (expecting b)... %c\n", get(2).charData);
+  printf("Fetching data from node 3 (expecting c)... %c\n", get(3).charData);
 
 }
