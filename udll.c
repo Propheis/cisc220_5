@@ -45,37 +45,38 @@ static void insert(int index, union Data data, char dataType) {
 }
 
 static union Data get(int index) {
-  return getNodeAt(index)->data
+  return getNodeAt(index)->data;
 }
 
 static void removeNode(int index) {
-  // Marissa
-
-  // Traverse list from shortest end (head or tail). use list length to figure that out
-  // Don't forget to decrement list length when removing a node (length stored in head.data.intData)
-
-  // Delete head
-  if ( index == 0 ) { 
-    printf("Deleting head of list\n");
-    head = head.next; 
-    free(head);
-    return;
+  Node * toRemove = getNodeAt(index);
+  if (toRemove == &head) {
+    printf("Cannot delete head of linked list. Contains valuable information\n");
   }
-  // Delete tail
-  else if ( index >= length() ) { 
-    printf("Deleting tail of list\n");
-    tail.next = NULL
-    free(tail);
-    return;
-  }
-  // Delete somewhere in the middle
   else {
-    printf("Deleting at index %d\n", index );
-    Node * delPoint = getNodeAt(index);
-    prev->next = delPoint->next;
-    free(delPoint);
-  }
+  // Delete first node
+    if ( index == 1 ) { 
+      printf("Deleting node at beginning of list\n");
+      head = *(head.next); 
+      return;
+    }
+  // Delete tail
+    else if ( index >= length() ) { 
+      printf("Deleting tail of list\n");
+      Node * prev = getNodeAt(index-1);
+      prev->next = NULL;
+      return;
+    }
+  // Delete somewhere in the middle
+    else {
+      printf("Deleting at index %d\n", index );
+      Node * delPoint = getNodeAt(index);
+      Node * prev = getNodeAt(index-1);
+      prev->next = delPoint->next;
+    }
+  free(toRemove);
   head.data.intData--;
+  }
 }
 
 static int length() {
