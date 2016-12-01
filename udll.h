@@ -5,7 +5,6 @@
 
 #include <stdio.h>
 
-
 #define INTDATA      0
 #define INTPTRDATA   1
 #define FLOATDATA    2
@@ -38,3 +37,4 @@ static void removeNode(int index);
 static union Data get(int index);
 static int length();
 static void printList();
+static void printr();
