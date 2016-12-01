@@ -102,29 +102,47 @@ int main() {
   insert(1, c, CHARDATA);
   printList();
 
-  insert(1, b, CHARDATA);
-  printList();
+  // insert(1, b, CHARDATA);
+  // printList();
 
-  char x;
-  int y;
+  // insert(3, d, CHARDATA);
+  // printList();
 
-  printf("\nFetching data from node 0 (expecting 3)...\n");
-  y = get(0).intData;
-  printf("Got %d\n\n", y);
+  // n_remove(4);
+  // printList();
 
-  printf("Fetching data from node 1 (expecting a)...\n");
-  x = get(1).charData;
-  printf("Got %c\n\n", x);
+  // n_remove(1);
+  // printList();
+
+  // insert(0, a, CHARDATA);
+  // printList();
+
+  // printf("Printing list tail to head...\n");
+  // printr();
+
+  // n_remove(2);
+  // printList();
+
+  // char x;
+  // int y;
+
+  // printf("\nFetching data from node 0 (expecting 3)...\n");
+  // y = get(0).intData;
+  // printf("Got %d\n\n", y);
+
+  // printf("Fetching data from node 1 (expecting a)...\n");
+  // x = get(1).charData;
+  // printf("Got %c\n\n", x);
 
 
-  printf("Fetching data from node 2 (expecting b)...\n");
-  x = get(2).charData;
-  printf("Got %c\n\n", x);
+  // printf("Fetching data from node 2 (expecting b)...\n");
+  // x = get(2).charData;
+  // printf("Got %c\n\n", x);
 
 
-  printf("Fetching data from node 3 (expecting c)...\n");
-  x = get(3).charData;
-  printf("Got %c\n\n", x);
+  // printf("Fetching data from node 3 (expecting c)...\n");
+  // x = get(3).charData;
+  // printf("Got %c\n\n", x);
 
 
 

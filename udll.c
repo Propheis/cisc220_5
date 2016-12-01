@@ -16,33 +16,52 @@ static Node head;
 static Node* tail = &head;
 
 static void insert(int index, union Data data, char dataType) {
-  // Increment length
-  head.data.intData++;
+  // if ( index == 0 ) { // insert to head of list
+  //   printf("Inserting (%c) to head of list\n", data.charData);
+  //   Node *new = node(data, dataType, &head, head.next);
+  //   head.next = new;
+  // }
+  // else if ( index == length() ) { // insert to tail of list
+  //   printf("Inserting (%c) to tail of list\n", data.charData);
+  //   Node *new = node(data, dataType, tail, NULL);
+  //   tail->next = new;
+  //   tail = new;
+  // }
+  // else { // Insert somewhere in the middle
+  //   printf("Inserting (%c) at index %d\n", data.charData, index );
+  //   Node* insertionPoint = getNodeAt(index);
+  //   Node *new = node(data, dataType, insertionPoint->prev, insertionPoint->next);
 
-  if ( index == 0 ) { // insert to head of list
+  //   insertionPoint->next = new;
+  //   new->next->prev = new;
+  // }
+
+  Node* insertionPoint = getNodeAt(index);
+  Node* new;
+
+  if (index == 0) {
     printf("Inserting (%c) to head of list\n", data.charData);
-    Node *new = node(data, dataType, &head, head.next);
-    head.next = new;
-    tail = new;
-
-    return;
+    new = node(data, dataType, &head, head.next);
+    head.next->prev = new;
   }
-  else if ( index == length() - 1 ) { // insert to tail of list
+  else if (index == length()) {
     printf("Inserting (%c) to tail of list\n", data.charData);
-    Node *new = node(data, dataType, tail, NULL);
+    new = node(data, dataType, tail, NULL);
     tail->next = new;
     tail = new;
-
-    return;
+  }
+  else {
+    printf("Inserting (%c) at index %d\n", data.charData, index );
+    new = node(data, dataType, insertionPoint, insertionPoint->next);
   }
 
-  // Insert somewhere in the middle
-  printf("Inserting (%c) at index %d\n", data.charData, index );
-  Node* insertionPoint = getNodeAt(index);
-  Node *new = node(data, dataType, insertionPoint->prev, insertionPoint->next);
+  if (new->prev != NULL)
+    new->prev->next = new;
+  else if (new->next != NULL)
+    new->next->prev = new;
 
-  insertionPoint->next = new;
-  new->next->prev = new;
+  // Increment length
+  head.data.intData++;
 }
 
 static union Data get(int index) {
@@ -50,7 +69,30 @@ static union Data get(int index) {
 }
 
 // temporarily renamed to n_remove b/c "remove" conflicts with a function in stdio.h
-static void n_remove(int index) { }
+static void n_remove(int index) {
+  Node *toRemove = getNodeAt(index);
+
+  printf("Removing (%c) from list\n", toRemove->data.charData);
+
+  if (toRemove == &head) {
+    printf("Removing head of list\n");
+    head.next->prev = NULL;
+    head = *(head.next);
+  }
+  else if (toRemove == tail) {
+    printf("Removing tail of list\n");
+    tail->prev->next = NULL;
+    tail = tail->prev;
+  }
+  else {
+    toRemove->prev->next = toRemove->next;
+    toRemove->next->prev = toRemove->prev;
+  }
+
+
+  free(toRemove);
+  head.data.intData--;
+}
 
 static int length() {
   return head.data.intData;
@@ -58,6 +100,7 @@ static int length() {
 
 static void printList() {
 
+  printf("  Printing head to tail: ");
   printf("(%d)", head.data.intData);
 
   Node* cur = head.next;
@@ -68,6 +111,9 @@ static void printList() {
   }
 
   printf("\n");
+
+  printf("  Printing tail to head: ");
+  printr();
 }
 
 // Creates a new node and returns the pointer to it
@@ -118,4 +164,26 @@ static Node* getNodeAt(int index) {
   } // end while
 
   return ptr;
+}
+
+static void printr() {
+  // if (length() >= 1) {
+  //   Node* next = tail->prev;
+
+  //   printf("(%c)", tail->data.charData);
+
+  //   while (next != &head) {
+  //     printf(" -> (%c)", next->data.charData);
+
+  //     next = next->prev;
+  //   }
+  //   printf(" -> (%d)\n\n", head.data.intData);
+  // }
+  // else
+  //   printf("(%d)\n\n", head.data.intData);
+
+  if (length() > 0)
+    printf("(%c) -> (%d)\n", tail->data.charData, head.data.intData);
+  else
+    printf("(%d)\n", head.data.intData);
 }

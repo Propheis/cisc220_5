@@ -37,3 +37,4 @@ static void n_remove(int index);
 static union Data get(int index);
 static int length();
 static void printList();
+static void printr();
