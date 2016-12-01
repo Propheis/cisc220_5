@@ -31,6 +31,7 @@ static void insert(int index, union Data data, char dataType) {
     printf("Inserting (%c) to tail of list\n", data.charData);
     Node *new = node(data, dataType, tail, NULL);
     tail->next = new;
+    tail = new;
 
     return;
   }
@@ -87,19 +88,25 @@ static Node* getNodeAt(int index) {
     exit(1);
   }
 
+  if (index == 0)
+    return &head;
+  else if (index == length()) {
+    printf("tail\n");
+    return tail;
+  }
+
   Node* ptr;
 
   char traverseFromHead = (index <= length() / 2);
   int currentIndex;
 
   if (traverseFromHead) {
-    printf("Traversing from head\n");
     currentIndex = 0;
     ptr = &head;
   }
   else {
     printf("Traversing from tail\n");
-    currentIndex = length();
+    currentIndex = length() -1;
     ptr = tail;
   }
 
@@ -110,6 +117,7 @@ static Node* getNodeAt(int index) {
       ptr = ptr->next;
     }
     else {
+      printf("Cur: %d, Ind: %d\n", currentIndex, index);
       currentIndex--;
       ptr = ptr->prev;
     }
