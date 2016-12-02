@@ -37,4 +37,10 @@ static void removeNode(int index);
 static union Data get(int index);
 static int length();
 static void printList();
+
+
+// Internal functions
+static Node* node(union Data data, char dataType, Node* prev, Node* next);
+static Node* getNodeAt(int index);
 static void printr();
+static void printMessage(char* verb, union Data data, char dataType, char* restOfMessage);
