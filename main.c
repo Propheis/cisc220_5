@@ -7,11 +7,14 @@
 #include <stdlib.h>
 
 int main() {
-  union Data a,b,c,d;
+  union Data a,b,c,d,ptr;
   a.charData = 'a';
   b.charData = 'b';
   c.charData = 'c';
   d.intData = -25;
+
+  float floatData = 3.141596;
+  ptr.floatPtrData = &floatData;
 
   printf("List is currently empty. Attempting to print list:\n");
   printList();
@@ -45,21 +48,34 @@ int main() {
   printList();
   printf("  List Length: %d\n\n", length());
 
+  insert(3, ptr, FLOATPTRDATA);
+  printList();
+  printf("  List Length: %d\n\n", length());
+
+  insert(1, b, CHARDATA);
+  printList();
+  printf("  List Length: %d\n\n", length());
+
+  insert(4, a, CHARDATA);
+  printList();
+  printf("  List Length: %d\n\n", length());
+
   char x;
   int y;
 
-  printf("\nFetching data from node 0 (expecting 3)...\n");
-  y = get(0).intData;
-  printf("Got %d\n", y);
 
   printf("Fetching data from node 1 (expecting a)...\n");
   x = get(1).charData;
-  printf("Got %c\n", x);
+  printf("Got %c\n\n", x);
 
 
-  printf("Fetching data from node 2 (expecting c)...\n");
+  printf("Fetching data from node 2 (expecting b)...\n");
   x = get(2).charData;
-  printf("Got %c\n", x);
+  printf("Got %c\n\n", x);
+
+  printf("Fetching data from node 4 (expecting -25)...\n");
+  y = get(4).intData;
+  printf("Got %d\n\n", y);
 
   printf("\n");
 }
