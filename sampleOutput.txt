@@ -1,0 +1,64 @@
+List is currently empty. Attempting to print list:
+  Printing list: List is empty
+  List Length: 0
+
+Inserting (a) to head of the list
+  Printing head to tail: (a)
+  Printing tail to head: (a)
+  List Length: 1
+
+Inserting (c) to the tail of the list
+  Printing head to tail: (a) -> (c)
+  Printing tail to head: (c) -> (a)
+  List Length: 2
+
+Inserting (b) at index 1
+  Printing head to tail: (a) -> (b) -> (c)
+  Printing tail to head: (c) -> (b) -> (a)
+  List Length: 3
+
+Inserting (-25) to the tail of the list
+  Printing head to tail: (a) -> (b) -> (c) -> (-25)
+  Printing tail to head: (-25) -> (c) -> (b) -> (a)
+  List Length: 4
+
+Deleting node (a) from the beginning of the list
+  Printing head to tail: (b) -> (c) -> (-25)
+  Printing tail to head: (-25) -> (c) -> (b)
+  List Length: 3
+
+Inserting (a) to head of the list
+  Printing head to tail: (a) -> (b) -> (c) -> (-25)
+  Printing tail to head: (-25) -> (c) -> (b) -> (a)
+  List Length: 4
+
+Deleting node (b) from index 2
+  Printing head to tail: (a) -> (c) -> (-25)
+  Printing tail to head: (-25) -> (c) -> (a)
+  List Length: 3
+
+Inserting (3.141596) to the tail of the list
+  Printing head to tail: (a) -> (c) -> (-25) -> (3.141596)
+  Printing tail to head: (3.141596) -> (-25) -> (c) -> (a)
+  List Length: 4
+
+Inserting (b) at index 1
+  Printing head to tail: (a) -> (b) -> (c) -> (-25) -> (3.141596)
+  Printing tail to head: (3.141596) -> (-25) -> (c) -> (b) -> (a)
+  List Length: 5
+
+Inserting (a) at index 4
+  Printing head to tail: (a) -> (b) -> (c) -> (-25) -> (a) -> (3.141596)
+  Printing tail to head: (3.141596) -> (a) -> (-25) -> (c) -> (b) -> (a)
+  List Length: 6
+
+Fetching data from node 1 (expecting a)...
+Got a
+
+Fetching data from node 2 (expecting b)...
+Got b
+
+Fetching data from node 4 (expecting -25)...
+Got -25
+
+
